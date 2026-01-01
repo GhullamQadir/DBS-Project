@@ -2,7 +2,7 @@
 
 A complete inventory management system built with React (frontend) and Flask (backend) with SQLite database.
 
-## Quick Start 🚀
+## Quick Start 
 
 Get the application running locally in 3 simple steps:
 
@@ -21,7 +21,7 @@ python backend_flask.py    # Terminal 1: Backend on http://localhost:3001
 npm run dev               # Terminal 2: Frontend on http://localhost:5173
 ```
 
-**Open http://localhost:5173 in your browser** - That's it! 🎉
+**Open http://localhost:5173 in your browser** - That's it! 
 
 ## Features
 
@@ -149,25 +149,11 @@ python test_flask.py
 python test_api.py
 ```
 
-### Building for Production
-```bash
-# Frontend build
-npm run build
 
-# Backend (Flask handles this automatically in production mode)
-```
 
-## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests
-5. Submit a pull request
 
-## License
 
-This project is licensed under the MIT License.
 
 
 
