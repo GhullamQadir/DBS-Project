@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System - Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .product { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inventory Management System</h1>
+        <p>Testing backend connection...</p>
+
+        <div id="status"></div>
+        <div id="products"></div>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const statusDiv = document.getElementById('status');
+            const productsDiv = document.getElementById('products');
+
+            try {
+                statusDiv.innerHTML = '<p class="success">Connecting to backend...</p>';
+
+                const response = await fetch('http://localhost:3001/api/products');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const products = await response.json();
+
+                statusDiv.innerHTML = '<p class="success">✅ Backend connected successfully!</p>';
+                productsDiv.innerHTML = '<h2>Products:</h2>' +
+                    products.map(product =>
+                        `<div class="product">
+                            <h3>${product.name}</h3>
+                            <p>SKU: ${product.sku}</p>
+                            <p>Category: ${product.category}</p>
+                            <p>Quantity: ${product.quantity}</p>
+                            <p>Price: $${product.unit_price}</p>
+                        </div>`
+                    ).join('');
+
+            } catch (error) {
+                statusDiv.innerHTML = `<p class="error">❌ Error connecting to backend: ${error.message}</p>`;
+                productsDiv.innerHTML = '<p>Please make sure the Flask backend is running on port 3001.</p>';
+            }
+        }
+
+        // Test the connection when page loads
+        window.onload = testAPI;
+    </script>
+</body>
+</html>
